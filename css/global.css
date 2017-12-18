@@ -1,7 +1,7 @@
 html {
 	background-color: #f5f7f8;
 }
-	
+
 body {
 	direction: __MSG_@@bidi_dir__;
 	font-size: 100%;
@@ -17,9 +17,6 @@ main {
 	min-height: 100vh;
 	padding: 0 2em;
 }
-
-
-
 
 header {
 	display: grid;
@@ -50,7 +47,6 @@ h1 {
 	margin-top: 1rem;
 	white-space: nowrap;
 }
-
 
 #status, 
 #errors {

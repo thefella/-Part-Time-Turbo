@@ -26,21 +26,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
 	if (details.reason == "install")
 	{
         console.log("This is a first install!");
-        
-        var defaultUrls = [
-			'*://*.netflix.com/watch/*', 
-			'*://*.amazon.co.uk/gp/product/*'
-			];
-        
-        chrome.storage.local.set(
-		{
-			exclusionUrls: defaultUrls
-		}, 
-		function(data) 
-		{
-			chrome.runtime.openOptionsPage();
-		});
-        
+		chrome.runtime.openOptionsPage(); 
     } 
     else if(details.reason == "update") 
     {
