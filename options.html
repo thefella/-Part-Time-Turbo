@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title data-translate="extensionName">Options</title>
+	<link href="css/global.css" rel="stylesheet">
+</head>
+<body>
+<main role="main">
+	
+	<header role="banner">
+		<div class="branding"><img src="icons/icon_128.png" alt=""> <div><h1><span data-translate="extensionName"></span> <span data-translate="langOptions"></span></h1> <span class="byline"><span data-translate="langByline"></span> <a href="https://twitter.com/thefella">Conor MacNeill</a></span></div>
+		</div>
+		
+		<div class="reward">
+			<span>PayPal: <a href="https://www.paypal.me/thefella">paypal.me/thefella</a></span>
+			<span>Bitcoin: <a href="bitcoin:1Dd2iLg2Z9V6Mah7WJQCzyrwouoHAtqVEb">1Dd2iLg2Z9V6Mah7WJQCzyrwouoHAtqVEb</a></span>
+		</div>
+	</header>
+	
+	<p>
+	<span data-translate="langPatternHint"></span><br>
+	<pre>
+*://*.netflix.com/watch/*
+*://*.amazon.co.uk/gp/product/*
+	</pre>
+	</p>
+
+	<div class="urls">
+		<div class="input">
+			<label for="urls">Websites to exclude:</label> 
+			<textarea id="urls" cols="40" rows="20"></textarea>
+		</div>
+		
+		<div class="output">
+			<div id="errors"></div>
+			<div id="status"></div>
+		</div>
+	</div>
+	
+	<button id="save">Save</button>
+</main>
+
+<script src="options.js"></script>
+</body>
+</html>

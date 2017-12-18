@@ -1,0 +1,31 @@
+{
+	"default_locale": "en_GB",
+	"background": {
+		"scripts": [ "background.js" ]
+	},
+	"browser_action": {
+		"default_icon": "icons/icon.png",
+		"default_title": "__MSG_extensionName__"
+	},
+	"description": "__MSG_extensionDescription__",
+	"icons": {
+		"128": "icons/icon_128.png",
+		"16": "icons/icon_16.png",
+		"48": "icons/icon_48.png"
+	},
+	//"key": "",
+	"developer": {
+		"name": "Conor MacNeill",
+		"url": "https://twitter.com/thefella"
+	},
+	"options_ui": {
+		"page": "options.html",
+		"chrome_style": true
+	},
+	"incognito": "spanning",
+	"manifest_version": 2,
+	"name": "__MSG_extensionName__",
+	"permissions": [ "tabs", "offroad", "storage" ],
+	"version": "0.8",
+	"web_accessible_resources": [ "icons/*", "css/*", "options.js", "options.html" ]
+}

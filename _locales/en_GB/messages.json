@@ -1,0 +1,17 @@
+{
+	"extensionName": {
+		"message": "Part-Time Turbo"
+	},
+	"extensionDescription":{
+		"message": "One-touch click for Opera Turbo, that also turns off for customisable URLs, e.g. Netflix or Amazon Video."
+	},
+	"langOptions":{
+		"message": "Options"
+	},
+	"langPatternHint":{
+		"message": "You can make a list of websites that you don't want Opera Turbo to affect. Add each website address on a new line. You can use patterns to specify the URLs that you want to exclude. Examples include:"
+	},
+	"langByline": {
+		"message": "by"
+	}
+}

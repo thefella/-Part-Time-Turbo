@@ -1,0 +1,78 @@
+body {
+	direction: __MSG_@@bidi_dir__;
+	font-size: 100%;
+}
+
+main {
+	margin: 0 auto;
+	max-width: 50em;
+}
+
+
+
+
+header {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 2%;
+}
+
+header > .branding {
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	grid-gap: 1em;
+}
+
+header > .reward {
+	font-size: 0.8em;
+	margin-top: 1rem;
+	text-align: right;
+	vertical-align: bottom;
+}
+
+header > .reward > span {
+	display: block;
+}
+
+h1 {
+	margin-bottom: 0.25em;
+	margin-top: 1rem;
+	white-space: nowrap;
+}
+
+
+#status, 
+#errors {
+	padding: 1em;
+	display: none;
+}
+
+#status {
+	background-color: #45ab49;
+	color: white;
+}
+
+#errors {
+	background-color: #ffe9c8;
+	color: #444;
+}
+
+label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 0.2em;
+}
+
+textarea {
+	width: 100%;
+}
+
+.urls {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 2%;
+}
+
+.output {
+	margin-top: 1em;
+}
