@@ -26,6 +26,6 @@
 	"manifest_version": 2,
 	"name": "__MSG_extensionName__",
 	"permissions": [ "tabs", "offroad", "storage" ],
-	"version": "0.8",
+	"version": "1.0",
 	"web_accessible_resources": [ "icons/*", "css/*", "options.js", "options.html" ]
 }
