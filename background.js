@@ -1,41 +1,75 @@
 "use strict";
 
-//! Array of URLs to exclude
-/*
-	var excludedUrls = [
-	'*://*.netflix.com/watch/*', 
-	'*://*.amazon.co.uk/gp/product/*'
-	];
-*/
-var excludedUrls;
 
-//! Get URLs to exclude from options / storage
-chrome.storage.local.get("exclusionUrls", function(data) 
-{
-	excludedUrls = "" + data.exclusionUrls;
-	excludedUrls = excludedUrls.split(',');
-});
+//! Excluded URLs array
+var excludedUrls = [];
+updateExcludedUrls();
 
-
-//chrome.storage.onChanged.addListener(callback)
-chrome.storage.onChanged.addListener(async function(changes, areaName) {
-	//alert('storage changed');
-});
-
-
-//! On install
-chrome.runtime.onInstalled.addListener(function(details) {
-	checkStatus();
-});
 
 //! On change of tab
 chrome.tabs.onActivated.addListener(function() {
 	checkTab();
 });
 
+
 //! On update of tab
 chrome.tabs.onUpdated.addListener(function() {
 	checkTab();
+});
+
+
+
+//! On install
+chrome.runtime.onInstalled.addListener(function(details) {
+	
+	//! First install
+	if (details.reason == "install")
+	{
+        console.log("This is a first install!");
+        
+        var defaultUrls = [
+			'*://*.netflix.com/watch/*', 
+			'*://*.amazon.co.uk/gp/product/*'
+			];
+        
+        chrome.storage.local.set(
+		{
+			exclusionUrls: defaultUrls
+		}, 
+		function(data) 
+		{
+			chrome.runtime.openOptionsPage();
+		});
+        
+    } 
+    else if(details.reason == "update") 
+    {
+        var thisVersion = chrome.runtime.getManifest().version;
+        console.log("Updated from " + details.previousVersion + " to " + thisVersion + "!");
+    }
+    
+	checkStatus();
+});
+
+
+
+//! Get URLs to exclude from options / storage
+function updateExcludedUrls() {
+	chrome.storage.local.get("exclusionUrls", function(data) 
+	{
+		excludedUrls = "" + data.exclusionUrls;
+		excludedUrls = excludedUrls.split(',');
+	});
+}
+
+
+
+//! Check for excluded URL changes and update
+chrome.storage.onChanged.addListener(function(changes, area) 
+{
+    if (area == "local" && "exclusionUrls" in changes) {
+        updateExcludedUrls();
+    }	
 });
 
 
@@ -91,12 +125,6 @@ function setPersistence(status)
 	{
 		chrome.storage.local.set({'turboStatus': "off"}, function() { /*console.log('Storage updated to OFF');*/ });
 	}
-	
-	//! Check storage and log it
-	/*chrome.storage.local.get("turboStatus", function(data) 
-	{
-		console.log("Storage result: " + data.turboStatus);
-	});*/
 }
 
 
@@ -133,21 +161,17 @@ chrome.browserAction.onClicked.addListener(function()
 
 //! Turn OFF for excluded URLs (if already ON)
 function checkTab() 
-{
-	//var turboStatus;
-	
+{	
 	//! Check storage to see if Turbo was ON or OFF
 	chrome.storage.local.get("turboStatus", function(data) 
-	{
-		//console.log("checkTab: " + data.turboStatus);
-		//turboStatus = data.turboStatus;
-		
+	{	
 		//! If Turbo was ON, turn it OFF for excluded URLs, then turn it back ON afterwards
-		if (data.turboStatus == "on") 
-		{
+		if (data.turboStatus == "on" && excludedUrls.toString() !== 'undefined') 
+		{	
 			chrome.tabs.query({ active: true, currentWindow: true, url:excludedUrls }, function(tabsArray) 
 			{
-			    if (tabsArray[0]) 
+			    //if (tabsArray[0]) 
+			    if (typeof tabsArray !== 'undefined' && tabsArray.length > 0)
 			    {
 				    opr.offroad.enabled.set({'value': false}, function(){});
 				    setIcon("off");
@@ -159,6 +183,5 @@ function checkTab()
 			    }
 			});
 		}
-
 	});
 }

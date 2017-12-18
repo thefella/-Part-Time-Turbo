@@ -1,11 +1,21 @@
+html {
+	background-color: #f5f7f8;
+}
+	
 body {
 	direction: __MSG_@@bidi_dir__;
 	font-size: 100%;
+	margin: 0;
+	padding: 0;
+	
 }
 
 main {
+	background-color: white;
 	margin: 0 auto;
-	max-width: 50em;
+	max-width: 50em; 
+	min-height: 100vh;
+	padding: 0 2em;
 }
 
 
@@ -15,6 +25,7 @@ header {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-gap: 2%;
+	padding-top: 1em;
 }
 
 header > .branding {

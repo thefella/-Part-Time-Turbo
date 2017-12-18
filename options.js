@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', restore_options);
 document.getElementById('save').addEventListener('click', save_options);
 
 
+
 //! i18n Translation
 var elements = document.querySelectorAll('[data-translate]');
 [].forEach.call(elements, function(element) {
@@ -14,7 +15,7 @@ var elements = document.querySelectorAll('[data-translate]');
 function save_options() 
 {
 	//! Get the URLs from the textarea
-	var textareaUrls = document.getElementById('urls').value.split('\n');
+	var textareaUrls = document.getElementById('urls').value.trim().split('\n');
 	var statusMessage = document.getElementById('status');
 	var errorMessage = document.getElementById('errors');
 	var valid;
@@ -76,8 +77,11 @@ function restore_options()
 {	
 	chrome.storage.local.get("exclusionUrls", function(items) 
 	{
-		urlList = ""+items.exclusionUrls;
-		document.getElementById('urls').value = urlList.split(',').join('\n');
+		if (typeof items.exclusionUrls !== 'undefined')
+		{	
+			urlList = ""+items.exclusionUrls;
+			document.getElementById('urls').value = urlList.split(',').join('\n');
+		}
 	});
 }
 
